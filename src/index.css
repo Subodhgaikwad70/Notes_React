@@ -1,13 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px; /* Base font size */
+  line-height: 1.6; /* Base line height for readability */
+}
+
+html {
+  font-size: 100%; /* Ensures rem units are based on user's default browser font size or 16px if not set */
+}
+
+:root {
+  /* Base Colors */
+  --primary-color: #007bff; /* Example: Blue */
+  --primary-color-rgb: 0, 123, 255; /* RGB for use in rgba() */
+  --secondary-color: #6c757d; /* Example: Gray */
+  --accent-color: #17a2b8; /* Example: Teal */
+  --success-color: #28a745; /* Example: Green */
+  --danger-color: #dc3545; /* Example: Red */
+  --warning-color: #ffc107; /* Example: Yellow */
+
+  /* Light Theme */
+  --background-color-light: #ffffff;
+  --text-color-light: #212529;
+  --navbar-background-color-light: #f8f9fa;
+  --navbar-text-color-light: #343a40;
+  --button-bg-color-light: var(--primary-color);
+  --button-text-color-light: #ffffff;
+  --card-bg-color-light: #ffffff;
+  --border-color-light: #dee2e6;
+
+  /* Dark Theme */
+  --background-color-dark: #121212; /* Off-black for less harshness */
+  --text-color-dark: #e0e0e0; /* Light gray for text */
+  --navbar-background-color-dark: #1c1c1c; /* Slightly lighter than body */
+  --navbar-text-color-dark: #f5f5f5;
+  --button-bg-color-dark: var(--primary-color); /* Keep primary for buttons, or choose a dark-theme specific one */
+  --button-text-color-dark: #ffffff;
+  --card-bg-color-dark: #1e1e1e; /* Dark gray for cards/elevated surfaces */
+  --border-color-dark: #424242; /* Darker border color */
+}
+
+[data-theme="light"] {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+  --navbar-background-color: var(--navbar-background-color-light);
+  --navbar-text-color: var(--navbar-text-color-light);
+  --button-bg-color: var(--button-bg-color-light);
+  --button-text-color: var(--button-text-color-light);
+  --card-bg-color: var(--card-bg-color-light);
+  --border-color: var(--border-color-light);
+  --primary-hover-color: #0056b3; /* Darker blue for hover */
+}
+
+[data-theme="dark"] {
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+  --navbar-background-color: var(--navbar-background-color-dark);
+  --navbar-text-color: var(--navbar-text-color-dark);
+  --button-bg-color: var(--button-bg-color-dark);
+  --button-text-color: var(--button-text-color-dark);
+  --card-bg-color: var(--card-bg-color-dark);
+  --border-color: var(--border-color-dark);
+  --primary-hover-color: #0056b3; /* Consistent hover, or define a dark-theme specific one */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transitions */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background-color: var(--card-bg-color); /* Give code blocks a background */
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  color: var(--accent-color); /* Use accent color for code text */
 }

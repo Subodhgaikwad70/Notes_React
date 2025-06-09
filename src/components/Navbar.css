@@ -13,71 +13,233 @@
     position: sticky;
     top: 0;
     cursor: pointer;
+    z-index: 1000; /* Ensure navbar stays on top */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle box-shadow for elevation */
+    transition: background-color 0.3s ease; /* Smooth transition for background change */
 }
 
 .nav-list{
     width: 50%;
     display: flex;
     align-items: center;
-
 }
 
 .nav-list li{
     list-style: none;
-    padding: 26px 30px;
-
+    padding: 0 15px; /* Adjusted padding: 0 top/bottom, 15px left/right per item */
 }
-.nav-list li a,a{
+
+.nav-list li a, a{ /* Applied to 'a' too for consistency if used alone */
     text-decoration: none;
-    color: white;
-    
-
+    color: var(--navbar-text-color);
+    padding: 12px 18px; /* Adjusted padding for larger clickable area */
+    border-radius: 6px; /* Slightly more rounded corners */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    font-weight: 500; /* Medium font weight for nav links */
+    font-size: 0.95rem; /* Slightly adjusted font size */
 }
-.nav-list li a:hover{
-    
-    color: gray;
 
+.nav-list li a:hover,
+.nav-list li a:focus {
+    color: var(--navbar-background-color);
+    background-color: var(--navbar-text-color);
+    text-decoration: none;
 }
+
+.nav-list li a.active {
+    color: var(--navbar-background-color);
+    background-color: var(--navbar-text-color);
+    font-weight: 600; /* Bold for active link */
+}
+
 .rightNav{
-    
-    text-align: right;
+    display: flex; /* Use flex to better manage spacing of items */
+    align-items: center; /* Align items vertically */
+    justify-content: flex-end; /* Align items to the right */
     width: 50%;
 }
 
 #search{
-    padding-left: 0px;
-    margin: 0px;
-    font-size: 18px;
-    border: 2px solid gray;
-    border-radius: 2px;
-    background: burlywood;
+    padding: 8px 12px;
+    margin-right: 15px;
+    font-size: 0.9rem; /* Adjusted font size for search input */
+    border: 1px solid var(--border-color); /* Use themed border color */
+    border-radius: 6px; /* Consistent rounded corners */
+    background: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+
+#search:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color-rgb), 0.25); /* Primary color focus ring */
+}
+
+#search::placeholder {
+    color: var(--secondary-color); /* Use secondary color for placeholder */
+    opacity: 1; /* Ensure placeholder is fully visible */
+}
+
 .background{
-    background-color: blueviolet;
+    background-color: var(--navbar-background-color);
+    padding: 10px 30px; /* Adjusted overall navbar padding: 10px top/bottom, 30px left/right */
     /* background: rgba(0, 0, 0, 0.7) url('../res/bg2.jpg'); */
     background-size: cover;
     background-blend-mode: darken;
-    
 }
-.btn{
-    color:aliceblue;
-    font-weight: bold;
-    margin: 7px;
-    padding: 8px 20px;
-    border: 2px solid white;
-    border-radius: 8px;
-    background-color: indianred ;
-    opacity: 80%;
-}
-#date,#title,#amount{
-    background-color: aliceblue;
-    width: 20%;
-    text-align: center;
-    align-items:flex-end;
-    margin-left: 400px;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    border: 2px solid black;
-    border-radius: 2px;
 
+.btn{
+    color: var(--button-text-color); /* Use new button text color variable */
+    background-color: var(--button-bg-color); /* Use new button background color variable */
+    font-weight: 500; /* Medium font weight for buttons */
+    font-size: 0.9rem; /* Adjusted button font size */
+    margin-left: 10px;
+    padding: 10px 20px; /* Adjusted padding: 10px top/bottom, 20px left/right */
+    border: 1px solid transparent; /* Transparent border initially */
+    border-radius: 6px; /* Consistent rounded corners */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: var(--primary-hover-color); /* Use new hover color variable */
+    color: var(--button-text-color);
+    border-color: var(--primary-hover-color);
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.3); /* Subtle shadow on hover/focus */
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color-rgb), 0.25), 0 2px 8px rgba(var(--primary-color-rgb), 0.3); /* Focus ring + shadow */
+}
+
+/* Example for a secondary button style if needed */
+.btn.btn-secondary {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+}
+
+.btn.btn-secondary:hover,
+.btn.btn-secondary:focus {
+    background-color: #545b62; /* Darker gray for secondary hover */
+    border-color: #545b62;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+
+#date,#title,#amount{ /* These seem like they are not used, but I will adjust them just in case */
+    background-color: var(--background-color);
+    width: auto; /* Adjust width */
+    text-align: center;
+    margin: 5px; /* Adjust margins */
+    padding: 5px 10px; /* Adjust padding */
+    border: 1px solid var(--text-color); /* Use theme text color for border */
+    border-radius: 4px;
+    color: var(--text-color);
+}
+
+.hamburger-menu {
+    display: none; /* Hidden by default, shown in media query */
+    flex-direction: column;
+    justify-content: space-around; /* Distribute space for the bars */
+    width: 30px; /* Slightly larger clickable area */
+    height: 30px; /* Slightly larger clickable area */
+    cursor: pointer;
+    padding: 0; /* Remove padding if not needed for layout */
+    margin-right: 15px; /* Add some margin to the right of hamburger */
+    align-self: center; /* Center hamburger icon vertically in flex container */
+}
+
+.hamburger-menu div {
+    width: 30px; /* Full width */
+    height: 3px;
+    background-color: var(--navbar-text-color);
+    margin: 0; /* Remove individual margins, use justify-content on parent */
+    transition: 0.4s;
+    border-radius: 2px; /* Slightly rounded bars */
+}
+
+/* Animation for hamburger to X */
+.hamburger-menu.open div:nth-child(1) {
+    transform: rotate(-45deg) translate(-6px, 7px);
+}
+.hamburger-menu.open div:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu.open div:nth-child(3) {
+    transform: rotate(45deg) translate(-6px, -7px);
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row; /* Keep it row for hamburger and brand/title if any */
+        justify-content: space-between; /* Space between hamburger and other items like logo/title */
+        align-items: center; /* Vertically align items */
+        padding: 10px 15px; /* Adjust padding for mobile */
+    }
+
+    .hamburger-menu {
+        display: flex;
+        order: -1; /* Ensure hamburger is on the left or as desired */
+    }
+
+    .nav-list {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        position: absolute; /* Position it absolutely for overlay effect */
+        top: 60px; /* Height of the navbar, adjust as needed */
+        left: 0;
+        background-color: var(--navbar-background-color); /* Give it a background */
+        z-index: 1000; /* Ensure it's above other content */
+        padding: 10px 0; /* Add some padding */
+        border-top: 1px solid var(--navbar-text-color); /* Separator */
+    }
+
+    .nav-list.show {
+        display: flex;
+    }
+
+    .nav-list li {
+        padding: 10px 0; /* Adjust padding for mobile list items */
+        width: 100%; /* Make list items take full width */
+    }
+
+    .nav-list li a, .nav-list li a:hover, .nav-list li a:focus, .nav-list li a.active {
+        /* Ensure mobile nav links have consistent styling and take full width */
+        display: block; /* Make links take full width of li */
+        width: 100%;
+        border-radius: 0; /* No border radius for full-width mobile links */
+    }
+
+    .rightNav {
+        width: auto; /* Adjust width as it's now part of the column flow with nav-list */
+        text-align: center;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: absolute; /* Also position absolutely */
+        top: calc(60px + (4 * 40px)); /* Position below nav-list, assuming 4 nav items each ~40px height */
+        left: 0;
+        width: 100%;
+        background-color: var(--navbar-background-color);
+        z-index: 999; /* Below nav-list if they overlap, or adjust as needed */
+        padding: 10px 0;
+        border-top: 1px solid var(--navbar-text-color); /* Separator */
+    }
+
+    .rightNav.show-flex {
+        display: flex; /* Shown when hamburger is clicked */
+    }
+
+    .rightNav .btn {
+        margin: 10px 0; /* Adjust margin for vertical layout */
+    }
+
+    /* Adjust theme toggle switch for mobile if needed */
+    /* For example, make it smaller or reposition it */
 }
